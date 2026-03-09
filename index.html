@@ -104,9 +104,11 @@ ctx.fillText(number,x,y);
 
 function downloadCard(){
 
+const number = document.getElementById("couponNumber").value;
+
 const link = document.createElement("a");
 
-link.download = "coupon.png";
+link.download = "coupon" + number + ".png";
 
 link.href = canvas.toDataURL("image/png");
 
