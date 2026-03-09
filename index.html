@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مولد كوبون</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f2f2f2;
+text-align:center;
+padding:40px;
+}
+
+.container{
+background:white;
+padding:20px;
+border-radius:10px;
+max-width:700px;
+margin:auto;
+}
+
+input{
+padding:10px;
+font-size:18px;
+width:200px;
+text-align:center;
+}
+
+button{
+padding:10px 20px;
+font-size:16px;
+margin:10px;
+cursor:pointer;
+}
+
+canvas{
+margin-top:20px;
+width:100%;
+height:auto;
+border:1px solid #ccc;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>مولد كرت الكوبون</h2>
+
+<input id="couponNumber" placeholder="رقم الكوبون">
+
+<br>
+
+<button onclick="generateCard()">إنشاء الكرت</button> <button onclick="downloadCard()">تحميل الصورة</button>
+
+<br>
+
+<canvas id="canvas" width="1536" height="877"></canvas>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const image = new Image();
+image.src = "card.png";
+
+image.onload = function(){
+ctx.drawImage(image,0,0,canvas.width,canvas.height);
+}
+
+function generateCard(){
+
+const number = document.getElementById("couponNumber").value;
+
+if(!number){
+alert("أدخل رقم الكوبون");
+return;
+}
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.drawImage(image,0,0,canvas.width,canvas.height);
+
+ctx.font = "bold 30px Arial";
+ctx.fillStyle = "#000";
+ctx.textAlign = "center";
+
+const x = canvas.width / 2 -68;
+const y = 865;
+
+ctx.fillText(number,x,y);
+
+}
+
+function downloadCard(){
+
+const link = document.createElement("a");
+
+link.download = "coupon.png";
+
+link.href = canvas.toDataURL("image/png");
+
+link.click();
+
+}
+
+</script>
+
+</body>
+</html>
