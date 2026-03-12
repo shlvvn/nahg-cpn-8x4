@@ -72,7 +72,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const image = new Image();
-image.src = "card.png";
+image.src = "card1.png";
 
 image.onload = function(){
 ctx.drawImage(image,0,0,canvas.width,canvas.height);
@@ -91,12 +91,12 @@ ctx.clearRect(0,0,canvas.width,canvas.height);
 
 ctx.drawImage(image,0,0,canvas.width,canvas.height);
 
-ctx.font = "bold 30px Arial";
+ctx.font = "bold 32px Arial";
 ctx.fillStyle = "#000";
 ctx.textAlign = "center";
 
-const x = canvas.width / 2 -68;
-const y = 865;
+const x = canvas.width / 2 -80;
+const y = 860;
 
 ctx.fillText(number,x,y);
 
